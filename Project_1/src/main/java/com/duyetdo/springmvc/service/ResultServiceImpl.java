@@ -34,13 +34,13 @@ public class ResultServiceImpl implements ResultService {
 		return dao.findByResultID(resultId);
 	}
 
-	public Result findResultByProjectId(String projectId) {
+	public Result findResultByProjectId(int projectId) {
 		return dao.findResultByProjectId(projectId);
 	}
 
 	public void saveResult(Result result) {
-		List<Fee> fees = feeDao.findFeeByProjectId(result.getProject().getProjectId());
-		Project project = projectDao.findByProjectID(result.getProject().getProjectId());
+		List<Fee> fees = feeDao.findFeeByProjectId(result.getProject().getId());
+		Project project = projectDao.findByPK(result.getProject().getId());
 		Double tongChiPhi = 0D;
 		for (Fee fee : fees) {
 			tongChiPhi += fee.getValue() * fee.getRate();
@@ -73,7 +73,7 @@ public class ResultServiceImpl implements ResultService {
 		return dao.findAllResults();
 	}
 
-	public boolean isResultUnique(String projectId) {
+	public boolean isResultUnique(int projectId) {
 		Result result = findResultByProjectId(projectId);
 		return (result == null);
 	}

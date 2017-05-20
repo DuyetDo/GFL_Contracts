@@ -100,10 +100,10 @@ public class AppController {
 		userService.saveUser(user);
 
 		model.addAttribute("user", user);
-		model.addAttribute("success",
+		model.addAttribute("usersuccess",
 				"User " + user.getFirstName() + " " + user.getLastName() + " registered successfully");
 		model.addAttribute("loggedinuser", getPrincipal());
-		return "success";
+		return "userSuccess";
 	}
 
 	/**

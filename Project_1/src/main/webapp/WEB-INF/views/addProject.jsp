@@ -1029,19 +1029,12 @@
 											<b>Khách Hàng</b>
 											<div class="input-group">
 												<div class="form-line">
-													<select class="form-control" name="customer">
-														<option value="" disabled selected>Chọn khách hàng...</option>
+													<form:select class="form-control" path="customer.id">
+														<form:option value="" disabled="true" selected="true">Chọn khách hàng...</form:option>
 														<c:forEach items="${select_customers}" var="it">
-															<c:choose>
-																<c:when test="${it.customerId== customer}">
-																	<option value="${it.customerId}" selected>${it.name}</option>
-																</c:when>
-																<c:otherwise>
-																	<option value="${it.customerId}">${it.name}</option>
-																</c:otherwise>
-															</c:choose>
+															<form:option value="${it.id}">${it.name}</form:option>
 														</c:forEach>
-													</select>
+													</form:select>
 												</div>
 												<div class="has-error">
 													<form:errors path="customer" class="help-inline" />

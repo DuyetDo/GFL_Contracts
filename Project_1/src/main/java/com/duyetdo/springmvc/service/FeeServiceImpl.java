@@ -34,20 +34,20 @@ public class FeeServiceImpl implements FeeService {
 		return dao.findByFeeID(feeId);
 	}
 
-	public Fee findByFeeNameAndProjectId(String feeName, String projectId) {
-		return dao.findByFeeNameAndProjectId(feeName, projectId);
+	public Fee findByFeeNameAndProjectId(String feeName, int id) {
+		return dao.findByFeeNameAndProjectId(feeName, id);
 	}
 	
-	public List<Fee> findFeeByProjectId(String projectId){
-		return dao.findFeeByProjectId(projectId);
+	public List<Fee> findFeeByProjectId(int id){
+		return dao.findFeeByProjectId(id);
 	}
 
 	@Transactional
 	public void saveFees(Fee fee) {
 		dao.save(fee);
-		Project project = projectDao.findByProjectID(fee.getProject().getProjectId());
-		Result re_entity = resultDao.findResultByProjectId(fee.getProject().getProjectId());
-		List<Fee> fees = findFeeByProjectId(fee.getProject().getProjectId());
+		Project project = projectDao.findByPK(fee.getProject().getId());
+		Result re_entity = resultDao.findResultByProjectId(fee.getProject().getId());
+		List<Fee> fees = findFeeByProjectId(fee.getProject().getId());
 		Double tongChiPhi = 0D;
 		for (Fee f : fees) {
 			tongChiPhi += f.getValue() * f.getRate();
@@ -83,9 +83,9 @@ public class FeeServiceImpl implements FeeService {
 			entity.setRate(fee.getRate());
 		}
 		
-		Project project = projectDao.findByProjectID(fee.getProject().getProjectId());
-		Result re_entity = resultDao.findResultByProjectId(fee.getProject().getProjectId());
-		List<Fee> fees = findFeeByProjectId(fee.getProject().getProjectId());
+		Project project = projectDao.findByPK(fee.getProject().getId());
+		Result re_entity = resultDao.findResultByProjectId(fee.getProject().getId());
+		List<Fee> fees = findFeeByProjectId(fee.getProject().getId());
 		Double tongChiPhi = 0D;
 		for (Fee f : fees) {
 			tongChiPhi += f.getValue() * f.getRate();
@@ -118,8 +118,8 @@ public class FeeServiceImpl implements FeeService {
 		return dao.findAllFees();
 	}
 
-	public boolean isFeeUnique(String feeName, String projectId) {
-		Fee fee = findByFeeNameAndProjectId(feeName, projectId);
+	public boolean isFeeUnique(String feeName, int id) {
+		Fee fee = findByFeeNameAndProjectId(feeName, id);
 		return (fee == null);
 	}
 

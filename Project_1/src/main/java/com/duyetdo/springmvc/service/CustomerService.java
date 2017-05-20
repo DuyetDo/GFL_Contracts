@@ -6,7 +6,7 @@ import com.duyetdo.springmvc.model.Customer;
 
 public interface CustomerService {
 
-	Customer findByCustomerPK(String pk);
+	Customer findByCustomerPK(int pk);
 
 	Customer findByCustomerID(String customerId);
 

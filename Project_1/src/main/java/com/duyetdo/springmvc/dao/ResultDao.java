@@ -10,7 +10,7 @@ public interface ResultDao {
 
 	Result findByResultID(int resultId);
 
-	Result findResultByProjectId(String projectId);
+	Result findResultByProjectId(int id);
 
 	void save(Result result);
 

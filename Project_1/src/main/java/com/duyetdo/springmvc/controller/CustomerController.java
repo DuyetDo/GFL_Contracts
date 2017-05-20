@@ -103,9 +103,9 @@ public class CustomerController {
 	/**
 	 * This method will provide the medium to update an existing customer.
 	 */
-	@RequestMapping(value = { "/edit-customer-{customerId}" }, method = RequestMethod.GET)
-	public String editCustomer(@PathVariable String customerId, ModelMap model) {
-		Customer customer = customerService.findByCustomerID(customerId);
+	@RequestMapping(value = { "/edit-customer-{id}" }, method = RequestMethod.GET)
+	public String editCustomer(@PathVariable int id, ModelMap model) {
+		Customer customer = customerService.findByCustomerPK(id);
 		model.addAttribute("customer", customer);
 		model.addAttribute("editCustomer", true);
 		model.addAttribute("loggedinuser", getPrincipal());
@@ -116,8 +116,8 @@ public class CustomerController {
 	 * This method will be called on form submission, handling POST request for
 	 * updating user in database. It also validates the customer input
 	 */
-	@RequestMapping(value = { "/edit-customer-{customerId}" }, method = RequestMethod.POST)
-	public String updateCustomer(@Valid Customer customer, BindingResult result, ModelMap model, @PathVariable String customerId) {
+	@RequestMapping(value = { "/edit-customer-{id}" }, method = RequestMethod.POST)
+	public String updateCustomer(@Valid Customer customer, BindingResult result, ModelMap model, @PathVariable int id) {
 
 		if (result.hasErrors()) {
 			return "addCustomer";

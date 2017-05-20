@@ -1,12 +1,15 @@
 package com.duyetdo.springmvc.model;
 // Generated Mar 27, 2017 11:22:56 AM by Hibernate Tools 5.2.0.CR1
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,6 +32,8 @@ import org.springframework.format.annotation.NumberFormat.Style;
 @Entity
 @Table(name = "project", catalog = "Project_1", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Project implements java.io.Serializable {
+	
+	private Integer id;
 
 	@Pattern(regexp="^[a-zA-Z0-9_.-]*$")
 	@NotBlank
@@ -60,7 +65,6 @@ public class Project implements java.io.Serializable {
 	private Double rate;
 
 	private Set<Fee> fees = new HashSet<Fee>();
-	private Set<Contract> contracts = new HashSet<Contract>();
 	private Set<Result> results = new HashSet<Result>();
 
 	public Project() {
@@ -71,7 +75,7 @@ public class Project implements java.io.Serializable {
 	}
 
 	public Project(String projectId, Customer customer, String name, Double value, Double giaVon, Date date,
-			String currency, Double rate, Set<Fee> fees, Set<Contract> contracts, Set<Result> results) {
+			String currency, Double rate, Set<Fee> fees, Set<Result> results) {
 		this.projectId = projectId;
 		this.customer = customer;
 		this.name = name;
@@ -81,11 +85,20 @@ public class Project implements java.io.Serializable {
 		this.currency = currency;
 		this.rate = rate;
 		this.fees = fees;
-		this.contracts = contracts;
 		this.results = results;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	
+	@Column(name = "id", unique = true, nullable = false)
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	@Column(name = "project_ID", unique = true, nullable = false, length = 45)
 	public String getProjectId() {
@@ -170,14 +183,6 @@ public class Project implements java.io.Serializable {
 		this.fees = fees;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
-	public Set<Contract> getContracts() {
-		return this.contracts;
-	}
-
-	public void setContracts(Set<Contract> contracts) {
-		this.contracts = contracts;
-	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
 	public Set<Result> getResults() {

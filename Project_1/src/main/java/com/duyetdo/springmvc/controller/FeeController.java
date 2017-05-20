@@ -90,7 +90,7 @@ public class FeeController {
 			return "addFee";
 		}
 
-	    if (!feeService.isFeeUnique(fee.getName(), fee.getProject().getProjectId())) {
+	    if (!feeService.isFeeUnique(fee.getName(), fee.getProject().getId())) {
 			FieldError feeNameError = new FieldError("fee", "name", messageSource.getMessage("non.unique.feeName",
 					new String[] { fee.getName() }, Locale.getDefault()));
 			result.addError(feeNameError);
@@ -100,9 +100,9 @@ public class FeeController {
 
 		feeService.saveFees(fee);
 		
-		Result re = resultService.findResultByProjectId(fee.getProject().getProjectId());
-		Project project = projectService.findByProjectID(fee.getProject().getProjectId());
-		List<Fee> fees = feeService.findFeeByProjectId(fee.getProject().getProjectId());
+		Result re = resultService.findResultByProjectId(fee.getProject().getId());
+		Project project = projectService.findByProjectPK(fee.getProject().getId());
+		List<Fee> fees = feeService.findFeeByProjectId(fee.getProject().getId());
 
 		model.addAttribute("fees", fees);
 		model.addAttribute("re", re);
@@ -138,13 +138,13 @@ public class FeeController {
 
 		feeService.updateFees(fee);
 		
-		Result re = resultService.findResultByProjectId(fee.getProject().getProjectId());
-		Project project = projectService.findByProjectID(fee.getProject().getProjectId());
-		List<Fee> fees = feeService.findFeeByProjectId(fee.getProject().getProjectId());
+		Result re = resultService.findResultByProjectId(fee.getProject().getId());
+		Project project = projectService.findByProjectPK(fee.getProject().getId());
+		List<Fee> fees = feeService.findFeeByProjectId(fee.getProject().getId());
 
 		model.addAttribute("fees", fees);
 		model.addAttribute("re", re);
-		model.addAttribute("pj ", project);
+		model.addAttribute("pj", project);
 		model.addAttribute("feesListLink", "/feesList");
 		model.addAttribute("feeSuccess",
 				fee.getName() + " " + " đã được thay đổi.");

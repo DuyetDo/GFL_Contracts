@@ -6,7 +6,7 @@ import com.duyetdo.springmvc.model.Project;
 
 public interface ProjectService {
 	
-	Project findByProjectPK(String pk);
+	Project findByProjectPK(int pk);
 
 	Project findByProjectID(String projectId);
 	

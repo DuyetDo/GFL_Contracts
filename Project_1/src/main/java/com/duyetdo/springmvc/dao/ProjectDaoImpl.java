@@ -12,14 +12,13 @@ import org.springframework.stereotype.Repository;
 import com.duyetdo.springmvc.model.Project;
 
 @Repository("projectDao")
-public class ProjectDaoImpl extends AbstractDao<String, Project> implements ProjectDao {
+public class ProjectDaoImpl extends AbstractDao<Integer, Project> implements ProjectDao {
 	static final Logger logger = LoggerFactory.getLogger(ProjectDaoImpl.class);
 
-	public Project findByPK(String pk) {
+	public Project findByPK(int pk) {
 		Project project = getByKey(pk);
 		if (project != null) {
 			Hibernate.initialize(project.getFees());
-			Hibernate.initialize(project.getContracts());
 			Hibernate.initialize(project.getResults());
 		}
 		return project;
@@ -32,7 +31,6 @@ public class ProjectDaoImpl extends AbstractDao<String, Project> implements Proj
 		Project project = (Project) crit.uniqueResult();
 		if (project != null) {
 			Hibernate.initialize(project.getFees());
-			Hibernate.initialize(project.getContracts());
 			Hibernate.initialize(project.getResults());
 		}
 		return project;
@@ -45,7 +43,6 @@ public class ProjectDaoImpl extends AbstractDao<String, Project> implements Proj
 		Project project = (Project) crit.uniqueResult();
 		if (project != null) {
 			Hibernate.initialize(project.getFees());
-			Hibernate.initialize(project.getContracts());
 			Hibernate.initialize(project.getResults());
 		}
 		return project;

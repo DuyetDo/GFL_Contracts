@@ -10,7 +10,7 @@ public interface ResultService {
 
 	Result findByResultID(int resultId);
 
-	Result findResultByProjectId(String projectId);
+	Result findResultByProjectId(int projectId);
 	
 	void saveResult(Result result);
 
@@ -18,5 +18,5 @@ public interface ResultService {
 
 	List<Result> findAllResults();
 	
-	boolean isResultUnique(String projectId);
+	boolean isResultUnique(int projectId);
 }

@@ -927,17 +927,10 @@
 											<b>Dự Án</b>
 											<div class="input-group">
 												<div class="form-line">
-													<form:select class="form-control" path="project">
+													<form:select class="form-control" path="project.id">
 														<form:option value="" disabled="true" selected="true">Select your option</form:option>
 														<c:forEach items="${select_projects}" var="it">
-															<c:choose>
-																<c:when test="${it.projectId== project.projectId}">
-																	<form:option value="${it.projectId}" selected="true">${it.name}</form:option>
-																</c:when>
-																<c:otherwise>
-																	<form:option value="${it.projectId}">${it.name}</form:option>
-																</c:otherwise>
-															</c:choose>
+															<form:option value="${it.id}">${it.name}</form:option>
 														</c:forEach>
 													</form:select>
 												</div>

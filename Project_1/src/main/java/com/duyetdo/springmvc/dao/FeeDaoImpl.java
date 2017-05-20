@@ -29,19 +29,19 @@ public class FeeDaoImpl extends AbstractDao<Integer, Fee> implements FeeDao {
 		return fee;
 	}
 
-	public Fee findByFeeNameAndProjectId(String feeName, String projectId) {
+	public Fee findByFeeNameAndProjectId(String feeName, int id) {
 		logger.info("FeeId : {}", feeName);
 		Criteria crit = createEntityCriteria();
 		crit.add(Restrictions.eq("name", feeName));
-		crit.add(Restrictions.eq("project.projectId", projectId));
+		crit.add(Restrictions.eq("project.id", id));
 		Fee fee = (Fee) crit.uniqueResult();
 		return fee;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Fee> findFeeByProjectId(String projectId){
+	public List<Fee> findFeeByProjectId(int id){
 		Criteria crit = createEntityCriteria();
-		crit.add(Restrictions.eq("project.projectId", projectId));
+		crit.add(Restrictions.eq("project.id", id));
 		List<Fee> fees = (List<Fee>) crit.list();
 		return fees;
 	}

@@ -10,9 +10,9 @@ public interface FeeDao {
 
 	Fee findByFeeID(int feeId);
 
-	Fee findByFeeNameAndProjectId(String feeName, String projectId);
+	Fee findByFeeNameAndProjectId(String feeName, int id);
 	
-	List<Fee> findFeeByProjectId(String projectId);
+	List<Fee> findFeeByProjectId(int id);
 
 	void save(Fee fee);
 

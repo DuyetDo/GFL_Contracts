@@ -955,7 +955,7 @@
 											<td>${customer.address}</td>
 											<sec:authorize access="hasRole('ADMIN')">
 											    <td><a
-													href="<c:url value='/edit-customer-${customer.customerId}' />"
+													href="<c:url value='/edit-customer-${customer.id}' />"
 													class="glyphicon glyphicon-pencil"></a></td>
 												<td><a style="color: #F44336"
 													href="<c:url value='/delete-customer-${customer.customerId}' />"

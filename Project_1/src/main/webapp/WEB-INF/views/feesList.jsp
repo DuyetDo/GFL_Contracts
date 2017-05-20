@@ -932,7 +932,6 @@
 								class="table table-bordered table-striped table-hover js-basic-example dataTable">
 								<thead>
 									<tr>
-										<th>ID</th>
 										<th>PROJECT</th>
 										<th>FEE NAME</th>
 										<th>VALUE</th>
@@ -952,7 +951,6 @@
 										<c:set var="date" value="${fee.date}"></c:set>
 										<c:set var="tyGia" value="${fee.rate}"></c:set>
 										<tr>
-											<td>${fee.feeId}</td>
 											<td>${fee.project.name}</td>
 											<td>${fee.name}</td>
 											<td><fmt:formatNumber type="number"
@@ -1006,7 +1004,6 @@
 								class="table table-bordered table-striped table-hover dataTable js-exportable">
 								<thead>
 									<tr>
-										<th>ID</th>
 										<th>PROJECT</th>
 										<th>FEE NAME</th>
 										<th>VALUE</th>
@@ -1022,7 +1019,6 @@
 										<c:set var="date" value="${fee.date}"></c:set>
 										<c:set var="tyGia" value="${fee.rate}"></c:set>
 										<tr>
-											<td>${fee.feeId}</td>
 											<td>${fee.project.name}</td>
 											<td>${fee.name}</td>
 											<td><fmt:formatNumber type="number"

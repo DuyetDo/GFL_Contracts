@@ -16,7 +16,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private CustomerDao dao;
 
-	public Customer findByCustomerPK(String pk) {
+	public Customer findByCustomerPK(int pk) {
 		return dao.findByPK(pk);
 	}
 
@@ -35,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	public void updateCustomers(Customer customer) {
-		Customer entity = dao.findByPK(customer.getCustomerId());
+		Customer entity = dao.findByPK(customer.getId());
 		if (entity != null) {
 			entity.setCustomerId(customer.getCustomerId());
 			entity.setName(customer.getName());

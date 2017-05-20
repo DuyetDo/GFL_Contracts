@@ -76,11 +76,11 @@ public class ProjectController {
 	/**
 	 * This method will show detail a project.
 	 */
-	@RequestMapping(value = { "/detail-project-{projectId}" }, method = RequestMethod.GET)
-	public String detailProject(@PathVariable String projectId, ModelMap model) {
-		Project project = projectService.findByProjectID(projectId);
-		Result result = resultService.findResultByProjectId(projectId);
-		List<Fee> fees = feeService.findFeeByProjectId(projectId);
+	@RequestMapping(value = { "/detail-project-{id}" }, method = RequestMethod.GET)
+	public String detailProject(@PathVariable int id, ModelMap model) {
+		Project project = projectService.findByProjectPK(id);
+		Result result = resultService.findResultByProjectId(id);
+		List<Fee> fees = feeService.findFeeByProjectId(id);
 		
 		model.addAttribute("detail", project.getName());
 		model.addAttribute("project", project);
@@ -132,12 +132,13 @@ public class ProjectController {
 
 		projectService.saveProjects(project);
 		
-		Result re = resultService.findResultByProjectId(project.getProjectId());
-		List<Fee> fees = feeService.findFeeByProjectId(project.getProjectId());
+		Project pj = projectService.findByProjectPK(project.getId());
+		Result re = resultService.findResultByProjectId(project.getId());
+		List<Fee> fees = feeService.findFeeByProjectId(project.getId());
 
 		model.addAttribute("fees", fees);
 		model.addAttribute("re", re);
-		model.addAttribute("pj", project);
+		model.addAttribute("pj", pj);
 		model.addAttribute("projectSuccess",project.getName() + " " + " được thêm thành công! ");
 		model.addAttribute("loggedinuser", getPrincipal());
 		return modelAndView2;
@@ -146,9 +147,9 @@ public class ProjectController {
 	/**
 	 * This method will provide the medium to update an existing project.
 	 */
-	@RequestMapping(value = { "/edit-project-{projectId}" }, method = RequestMethod.GET)
-	public String editProject(@PathVariable String projectId, ModelMap model) {
-		Project project = projectService.findByProjectID(projectId);
+	@RequestMapping(value = { "/edit-project-{id}" }, method = RequestMethod.GET)
+	public String editProject(@PathVariable int id, ModelMap model) {
+		Project project = projectService.findByProjectPK(id);
 		model.addAttribute("project", project);
 		model.addAttribute("editProject", true);
 		model.addAttribute("loggedinuser", getPrincipal());
@@ -159,8 +160,8 @@ public class ProjectController {
 	 * This method will be called on form submission, handling POST request for
 	 * updating project in database. It also validates the project input
 	 */
-	@RequestMapping(value = { "/edit-project-{projectId}" }, method = RequestMethod.POST)
-	public ModelAndView updateProject(@Valid Project project, BindingResult result, ModelMap model, @PathVariable String projectId) {
+	@RequestMapping(value = { "/edit-project-{id}" }, method = RequestMethod.POST)
+	public ModelAndView updateProject(@Valid Project project, BindingResult result, ModelMap model, @PathVariable int id) {
 
 		ModelAndView modelAndView1 = new ModelAndView("addProject");
 		ModelAndView modelAndView2 = new ModelAndView("success");
@@ -171,13 +172,13 @@ public class ProjectController {
 
 		projectService.updateProjects(project);
 		
-		Result re = resultService.findResultByProjectId(project.getProjectId());
-		
-		List<Fee> fees = feeService.findFeeByProjectId(project.getProjectId());
+		Project pj = projectService.findByProjectPK(project.getId());
+		Result re = resultService.findResultByProjectId(project.getId());
+		List<Fee> fees = feeService.findFeeByProjectId(project.getId());
 		
 		model.addAttribute("fees", fees);
 		model.addAttribute("re", re);
-		model.addAttribute("pj", project);
+		model.addAttribute("pj", pj);
 		model.addAttribute("projectSuccess",
 				project.getName() + " " + " đã được cập nhật.");
 		model.addAttribute("loggedinuser", getPrincipal());

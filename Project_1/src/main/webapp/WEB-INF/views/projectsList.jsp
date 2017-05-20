@@ -785,7 +785,7 @@ a:hover {
 											<c:set var="tyGia" value="${project.rate}"></c:set>
 											<tr>
 												<td><a
-													href="<c:url value='/detail-project-${project.projectId}' />"
+													href="<c:url value='/detail-project-${project.id}' />"
 													class="glyphicon glyphicon-search"></a></td>
 												<td>${project.projectId}</td>
 												<td>${project.name}</td>
@@ -801,7 +801,7 @@ a:hover {
 												<td>${project.customer.name}</td>
 												<sec:authorize access="hasRole('ADMIN')">
 													<td><a
-														href="<c:url value='/edit-project-${project.projectId}' />"
+														href="<c:url value='/edit-project-${project.id}' />"
 														class="glyphicon glyphicon-pencil"></a></td>
 													<td><a style="color: #F44336"
 														href="<c:url value='/delete-project-${project.projectId}' />"

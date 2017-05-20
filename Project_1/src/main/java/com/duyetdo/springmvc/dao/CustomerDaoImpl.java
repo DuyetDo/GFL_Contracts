@@ -13,11 +13,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 @Repository("customerDao")
-public class CustomerDaoImpl extends AbstractDao<String, Customer> implements CustomerDao {
+public class CustomerDaoImpl extends AbstractDao<Integer, Customer> implements CustomerDao {
 
 	static final Logger logger = LoggerFactory.getLogger(CustomerDaoImpl.class);
 
-	public Customer findByPK(String pk) {
+	public Customer findByPK(int pk) {
 		Customer customer = getByKey(pk);
 		if (customer != null) {
 			Hibernate.initialize(customer.getProjects());

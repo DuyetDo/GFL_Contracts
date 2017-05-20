@@ -10,7 +10,7 @@ public interface FeeService {
 
 	Fee findByFeeID(int feeId);
 
-	Fee findByFeeNameAndProjectId(String feeName, String projectId);
+	Fee findByFeeNameAndProjectId(String feeName, int id);
 	
 	void saveFees(Fee fee);
 	
@@ -18,9 +18,9 @@ public interface FeeService {
 
 	void deleteByFeeID(int feeId);
 	
-	List<Fee> findFeeByProjectId(String projectId);
+	List<Fee> findFeeByProjectId(int id);
 
 	List<Fee> findAllFees();
 	
-	boolean isFeeUnique(String feeName, String projectId);
+	boolean isFeeUnique(String feeName, int id);
 }

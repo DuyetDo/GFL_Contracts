@@ -929,17 +929,8 @@
 											<b>Mã Khách Hàng</b>
 											<div class="input-group">
 												<div class="form-line">
-													<c:choose>
-														<c:when test="${editCustomer}">
-															<form:input type="text" path="customerId" id="customerId"
-																class="form-control " disabled="true" />
-														</c:when>
-														<c:otherwise>
-															<form:input type="text" path="customerId" id="customerId"
-																class="form-control " placeholder="Enter customer id" />
-
-														</c:otherwise>
-													</c:choose>
+													<form:input type="text" path="customerId" id="customerId"
+														class="form-control " placeholder="Enter customer id" />
 												</div>
 												<div class="has-error">
 													<form:errors path="customerId" class="help-inline" />

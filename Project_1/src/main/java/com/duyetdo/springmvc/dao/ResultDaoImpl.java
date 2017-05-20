@@ -28,10 +28,10 @@ public class ResultDaoImpl extends AbstractDao<Integer, Result> implements Resul
 		return result;
 	}
 
-	public Result findResultByProjectId(String projectId) {
-		logger.info("ProjectId : {}", projectId);
+	public Result findResultByProjectId(int id) {
+		logger.info("id : {}", id);
 		Criteria crit = createEntityCriteria();
-		crit.add(Restrictions.eq("project.projectId", projectId));
+		crit.add(Restrictions.eq("project.id", id));
 		Result result = (Result) crit.uniqueResult();
 		return result;
 	}

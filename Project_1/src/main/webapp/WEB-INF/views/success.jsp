@@ -952,7 +952,7 @@
 										<td><fmt:formatNumber type="number" maxFractionDigits="9"
 												value="${tyGia}" /></td>
 										<td><fmt:formatDate pattern="dd-MM-yyyy" value="${date}" /></td>
-										<td>${pj.customer.customerId}</td>
+										<td>${pj.customer.name}</td>
 									</tr>
                                 </tbody>
                             </table>

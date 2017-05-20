@@ -83,7 +83,7 @@ public class ResultController {
 			return "result";
 		}
 
-	    if (!resultService.isResultUnique(re.getProject().getProjectId())) {
+	    if (!resultService.isResultUnique(re.getProject().getId())) {
 			FieldError resultError = new FieldError("result", "project.projectId", messageSource.getMessage("non.unique.result.project.projectId",
 					new String[] { re.getProject().getProjectId() }, Locale.getDefault()));
 			result.addError(resultError);

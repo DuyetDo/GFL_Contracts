@@ -26,7 +26,7 @@ public class ProjectServiceImpl implements ProjectService {
 	@Autowired
 	private FeeDao feeDao;
 	
-	public Project findByProjectPK(String pk){
+	public Project findByProjectPK(int pk){
 		return projectDao.findByPK(pk);
 	}
 
@@ -43,7 +43,7 @@ public class ProjectServiceImpl implements ProjectService {
 	@Transactional
 	public void saveProjects(Project project) {
 		projectDao.save(project);
-		List<Fee> fees = feeDao.findFeeByProjectId(project.getProjectId());
+		List<Fee> fees = feeDao.findFeeByProjectId(project.getId());
 		Double tongChiPhi = 0D;
 		for (Fee fee : fees) {
 			tongChiPhi += fee.getValue() * fee.getRate();
@@ -72,8 +72,8 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Transactional
 	public void updateProjects(Project project) {
-		Project entity = projectDao.findByPK(project.getProjectId());
-		Result re_entity = resultDao.findResultByProjectId(project.getProjectId());
+		Project entity = projectDao.findByPK(project.getId());
+		Result re_entity = resultDao.findResultByProjectId(project.getId());
 		if (entity != null) {
 			entity.setProjectId(project.getProjectId());
 			entity.setName(project.getName());
@@ -85,7 +85,7 @@ public class ProjectServiceImpl implements ProjectService {
 			entity.setCustomer(project.getCustomer());
 		}
 		
-		List<Fee> fees = feeDao.findFeeByProjectId(project.getProjectId());
+		List<Fee> fees = feeDao.findFeeByProjectId(project.getId());
 		Double tongChiPhi = 0D;
 		for (Fee fee : fees) {
 			tongChiPhi += fee.getValue() * fee.getRate();
